@@ -67,6 +67,8 @@
 
 				// left
 
+
+
 				const geometry1 = new THREE.SphereGeometry( 500, 60, 40 );
 				// invert the geometry on the x-axis so that all of the faces point inward
 				geometry1.scale( - 1, 1, 1 );
@@ -83,7 +85,7 @@
 
 				const mesh1 = new THREE.Mesh( geometry1, material1 );
 				mesh1.rotation.y = - Math.PI / 2;
-				mesh1.layers.set( 1 ); // display in left eye only
+				mesh1.layers.set( 3 ); // display in left eye only
 				scene.add( mesh1 );
 
 				// right
@@ -115,7 +117,13 @@
 				renderer.xr.enabled = true;
 				renderer.xr.setReferenceSpaceType( 'local' );
 				container.appendChild( renderer.domElement );
+				const VRCamera = renderer.xr.getCamera();
+				VRCamera.layers.enable( 3 );
+				VRCamera.cameras.forEach( camera => {
 
+					camera.layers.enable( 3 );
+
+				} );
 				document.body.appendChild( VRButton.createButton( renderer ) );
 
 				//
