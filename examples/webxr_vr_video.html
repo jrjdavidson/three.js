@@ -117,7 +117,8 @@
 				renderer.xr.enabled = true;
 				renderer.xr.setReferenceSpaceType( 'local' );
 				container.appendChild( renderer.domElement );
-				const VRCamera = renderer.xr.updateCamera();
+				const VRCamera = renderer.xr.getCamera();
+				console.log(renderer.xr);
 				VRCamera.layers.enable( 3 );
 				VRCamera.cameras.forEach( camera => {
 
