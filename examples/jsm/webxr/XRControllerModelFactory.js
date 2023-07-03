@@ -221,7 +221,7 @@ class XRControllerModelFactory {
 
 	}
 
-	createControllerModel( controller ) {
+	createControllerModel( controller, onLoaded ) {
 
 		const controllerModel = new XRControllerModel();
 		let scene = null;
@@ -247,6 +247,8 @@ class XRControllerModelFactory {
 
 					addAssetSceneToControllerModel( controllerModel, scene );
 
+					onLoaded( controllerModel );
+
 				} else {
 
 					if ( ! this.gltfLoader ) {
@@ -263,6 +265,8 @@ class XRControllerModelFactory {
 						scene = asset.scene.clone();
 
 						addAssetSceneToControllerModel( controllerModel, scene );
+
+						onLoaded( controllerModel );
 
 					},
 					null,
